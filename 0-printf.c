@@ -23,16 +23,19 @@ int _printf(const char *format, ...)
 			i++;
 			switch (format[i])
 			{
+				case '\0':
+					write(1, NULL, strlen(NULL));
+					break;
 				case 'c':
 					_putchar(va_arg(args, int));
 					count++;
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					write(1, s, strlen(s));
+					count += write(1, s, strlen(s));
 					break;
 				case '%':
-					_putchar('%');
+					write(1, "%", 1);
 					count++;
 					break;
 
