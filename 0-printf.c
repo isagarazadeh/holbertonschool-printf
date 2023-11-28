@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "main.h"
 /**
- * _printf - function
+ * _printf - functions
  * @format: var
  * Return: return success
  */
