@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case '\0':
+					i--;
 					break;
 				case 'c':
 					_putchar(va_arg(args, int));
@@ -37,7 +38,10 @@ int _printf(const char *format, ...)
 					write(1, "%", 1);
 					count++;
 					break;
-
+				default:
+					count += write(1, "%", 1);
+					count += write(1, format + (i + 1), 1);
+					break;
 			}
 		}
 		else
