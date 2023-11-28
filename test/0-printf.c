@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+#include <unistd.h>
 #include "main.h"
 /**
  * _printf - function
@@ -28,8 +29,7 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					_putchar(s[count]);
-					count += strlen(s);
+					write(1, s, strlen(s));
 					break;
 				case '%':
 					_putchar('%');
