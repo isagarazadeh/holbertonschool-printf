@@ -29,10 +29,10 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					write(1, s, strlen(s));
+					count += write(1, s, strlen(s));
 					break;
 				case '%':
-					_putchar('%');
+					write(1, "%", 1);
 					count++;
 					break;
 
