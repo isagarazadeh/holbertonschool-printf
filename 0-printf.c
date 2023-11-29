@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "main.h"
+int print_int(unsigned int r, int s);
 /**
  * _printf - function
  * @format: var
@@ -36,18 +37,60 @@ int _printf(const char *format, ...)
 					write(1, "%", 1), count++;
 					break;
 				default:
-					count += write(1, "%", 1);
-					count += write(1, format + i, 1);
+					count += write(1, "%", 1), count += write(1, format + i, 1);
 					break;
 			}
 		}
-		else
+		else if ((format[i] == '%') && ((format[i + 1] == 'd')
+					|| (format[i + 1] == 'i')))
 		{
+			count = print_int(count, va_arg(args, int));
+			i++; }
+		else
 			_putchar(format[i]), count++;
-		}
 	}
 	if (count == 0)
 		return (-1);
 	va_end(args);
 	return (count);
+}
+/**
+* print_int - for printing numbers
+* @r: count of numbers
+* @s: number string
+* Return: count of numbers
+*/
+int print_int(unsigned int r, int s)
+{
+	int m = 0, c = 0;
+	unsigned int n;
+	char number[11];
+
+	if (s < 0)
+	{
+		_putchar('-');
+		r++;
+		n = -1 * s;
+	}
+	else
+		n = s;
+	if (n == 0)
+	{
+		_putchar(48);
+		return (r + 1);
+	}
+	while (n > 0)
+	{
+		m = n % 10;
+		number[c] = m + 48;
+		n = n / 10;
+		c++;
+	}
+	r = r + c;
+	c = c - 1;
+	for (; c >= 0; c--)
+	{
+		_putchar(number[c]);
+	}
+	return (r);
 }
