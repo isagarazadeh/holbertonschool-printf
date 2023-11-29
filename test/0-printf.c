@@ -18,7 +18,13 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if ((format[i] == '%') && (format[i + 1] == 'd'
+			|| (format[i + 1] == 'i')))
+		{
+			count = print_int(count, va_arg(args, int));
+			i++;
+		}
+		else if (format[i] == '%')
 		{
 			i++;
 			switch (format[i])
@@ -41,11 +47,6 @@ int _printf(const char *format, ...)
 					break;
 			}
 		}
-		else if ((format[i] == '%') && ((format[i + 1] == 'd')
-					|| (format[i + 1] == 'i')))
-		{
-			count = print_int(count, va_arg(args, int));
-			i++; }
 		else
 			_putchar(format[i]), count++;
 	}
