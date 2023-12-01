@@ -5,7 +5,7 @@
 #include "main.h"
 int print_int(unsigned int r, int s);
 /**
- * _printf - function
+ * _printf - functions
  * @format: var
  * Return: return success
  */
