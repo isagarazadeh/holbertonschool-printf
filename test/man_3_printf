@@ -1,0 +1,68 @@
+#!/bin/bash
+echo ".\" Manual page for printf
+.TH PRINTF 3 "2023-12-01" "Version 1.0.1.2"
+
+.SH NAME
+_printf \- formatted output conversion.
+
+.SH SYNOPSIS
+\fB#include "main.h"\fR
+.br
+\fB#include <stdio.h>;\fR
+.br
+\fBint _printf(const char *format, ...);\fR
+.br
+
+.SH DESCRIPTION
+The \fB_printf\fR function writes output to stdout, according to the format specified by the format string.
+
+.SH FORMATS
+Function supports 4 main flags, format specifiers:
+
+.SH RETURN VALUE
+ Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings).
+
+.TP
+\fB%c\fR
+Replaces it with given char argument.
+
+.TP
+\fB%s\fR
+Replaces it with given string argument
+
+.TP
+\fB%i\fR
+Replaces it with given integer argument
+
+.TP
+\fB%d\fR
+Replaces it with given decimal argument
+
+.TP
+\fB%%\fR
+Prints '%'.
+
+.SH EXAMPLE
+.P
+\fB_printf("String:[%s]\n", "I am a string !");\fR
+\fB_printf("Negative:[%d]\n", -762534);\fR
+.P
+Output:
+\fBString:[I am a string !]\fR
+\fBNegative:[-762534]\fR
+.P
+Return: 81
+
+.SH AUTHORS
+Isa Garazadeh
+.br
+Gunay Gasimova
+
+.SH COPYRIGHTS
+Isa was here
+
+.SH SEE ALSO
+\fBman man\fR" > _printf.1
+mv _printf.1 /usr/local/man/man1/
+gzip -f /usr/local/man/man1/_printf.1
+man _printf
